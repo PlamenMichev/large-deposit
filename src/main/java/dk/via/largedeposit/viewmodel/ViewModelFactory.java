@@ -8,7 +8,7 @@ public class ViewModelFactory {
     private final OverviewViewModel overviewViewModel;
     private final CreateTransactionViewModel createTransactionViewModel;
     private final AccountDetailsViewModel accountDetailsViewModel;
-    private final CreateTransactionViewModel createAccountViewModel;
+    private final CreateAccountViewModel createAccountViewModel;
     private final UsersListViewModel usersListViewModel;
     private final AccountsListViewModel accountsListViewModel;
     private final TransactionsListViewModel transactionsListViewModel;
@@ -19,7 +19,7 @@ public class ViewModelFactory {
         this.overviewViewModel = new OverviewViewModel(model);
         this.createTransactionViewModel = new CreateTransactionViewModel(model);
         this.accountDetailsViewModel = new AccountDetailsViewModel(model);
-        this.createAccountViewModel = new CreateTransactionViewModel(model);
+        this.createAccountViewModel = new CreateAccountViewModel(model);
         this.usersListViewModel = new UsersListViewModel(model);
         this.accountsListViewModel = new AccountsListViewModel(model);
         this.transactionsListViewModel = new TransactionsListViewModel(model);
@@ -45,7 +45,7 @@ public class ViewModelFactory {
         return accountDetailsViewModel;
     }
 
-    public CreateTransactionViewModel getCreateAccountViewModel() {
+    public CreateAccountViewModel getCreateAccountViewModel() {
         return createAccountViewModel;
     }
 

@@ -14,4 +14,11 @@ public class AccountsListViewController {
         this.viewModel = viewModel;
         this.root = root;
     }
+
+    public Region getRoot() {
+        return root;
+    }
+
+    public void reset() {
+    }
 }
