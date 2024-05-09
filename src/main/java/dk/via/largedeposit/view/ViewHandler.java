@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import static dk.via.largedeposit.view.ViewFactory.LOGIN;
+
 public class ViewHandler {
     private final Scene currentScene;
     private Stage primaryStage;
@@ -17,6 +19,7 @@ public class ViewHandler {
 
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.openView(LOGIN);
         // TODO: open relevant initial view
     }
 
