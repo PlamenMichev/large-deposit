@@ -17,11 +17,14 @@ fx:controller="dk.via.largedeposit.view.OverviewViewController">
             <!-- Title -->
             <Label text="Account Overview" style="-fx-font-size: 18pt;"/>
 
-            <!-- Account List -->
-            <GridPane fx:id="accountList" alignment="CENTER" hgap="20" vgap="20"/>
-
             <!-- Button to Create New Account -->
             <Button text="Create New Account" onAction="#handleCreateNewAccountButtonAction"/>
+
+            <!-- Create Transaction Button -->
+            <Button text="Create Transaction" onAction="#handleCreateTransactionButtonAction"/>
+
+            <!-- Account List -->
+            <GridPane fx:id="accountList" alignment="CENTER" hgap="20" vgap="20"/>
         </VBox>
     </center>
 </BorderPane>

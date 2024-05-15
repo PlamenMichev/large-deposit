@@ -5,6 +5,7 @@ module dk.via {
     requires java.rmi;
 
     opens dk.via.largedeposit.view to javafx.fxml;
+    opens dk.via.largedeposit.model to javafx.base;
     opens dk.via.largedeposit to javafx.fxml;
 
     exports dk.via.largedeposit;

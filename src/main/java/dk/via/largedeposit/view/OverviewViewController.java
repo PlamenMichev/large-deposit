@@ -59,6 +59,7 @@ public class OverviewViewController {
 
             // Add border around the label
             accountInfoLabel.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+            accountInfoLabel.setOnMouseClicked((event) -> viewHandler.openView(ViewFactory.ACCOUNT_DETAILS));
             accountList.add(accountInfoLabel, col, row);
             col++;
             if (col == 3) {
@@ -71,6 +72,11 @@ public class OverviewViewController {
     @FXML
     private void handleCreateNewAccountButtonAction() {
         viewHandler.openView(ViewFactory.CREATE_ACCOUNT);
+    }
+
+    @FXML
+    private void handleCreateTransactionButtonAction() {
+        viewHandler.openView(ViewFactory.CREATE_TRANSACTION);
     }
 
     public Region getRoot() {
