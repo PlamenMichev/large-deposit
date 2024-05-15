@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefWidth="800" prefHeight="600"
+fx:controller="dk.via.largedeposit.view.CreateAccountViewController">
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <!-- Title -->
+            <Label text="Create New Account" style="-fx-font-size: 18pt;"/>
+
+            <GridPane alignment="CENTER" hgap="10" vgap="5">
+                <!-- Title -->
+                <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Currency -->
+                <Label text="Currency:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ChoiceBox fx:id="currencyChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="DKK"/>
+                            <String fx:value="USD"/>
+                            <String fx:value="EUR"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+
+                <!-- Type -->
+                <Label text="Type:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ChoiceBox fx:id="typeChoiceBox" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Debit"/>
+                            <String fx:value="Credit"/>
+                            <String fx:value="Savings"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+            </GridPane>
+
+            <!-- Button to Create Account -->
+            <Button text="Create Account" onAction="#handleCreateAccountButtonAction"/>
+        </VBox>
+    </center>
+</BorderPane>
