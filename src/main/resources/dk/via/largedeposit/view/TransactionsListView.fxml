@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.largedeposit.view.TransactionsListViewController" prefWidth="800" prefHeight="600">
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- Title -->
+            <Label text="Transactions Overview" style="-fx-font-size: 18pt;"/>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Accounts List Button -->
+            <Button text="Users" onAction="#handleUsersListButtonAction"/>
+
+            <!-- Transactions Button -->
+            <Button text="Accounts" onAction="#handleAccountsButtonAction"/>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Activate/Deactivate Button -->
+            <Button text="Activate/Deactivate" onAction="#handleActivateDeactivateButtonAction"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="transactionList" prefWidth="600">
+            <columns>
+                <TableColumn text="Id" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

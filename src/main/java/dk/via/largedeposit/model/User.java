@@ -3,7 +3,7 @@ package dk.via.largedeposit.model;
 import dk.via.largedeposit.model.enums.UserRole;
 
 public class User {
-
+    private int id;
     private final String cvrNumber;
     private String firstName;
     private String lastName;
@@ -33,6 +33,7 @@ public class User {
             boolean isVerified,
             long dateOfBirth,
             long createdAt) {
+        id = -1;
         this.cvrNumber = cvrNumber;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +47,10 @@ public class User {
         this.isVerified = isVerified;
         this.dateOfBirth = dateOfBirth;
         this.createdAt = createdAt;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCvrNumber() {

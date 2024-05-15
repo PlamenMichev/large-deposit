@@ -30,7 +30,7 @@ public class LoginViewController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        viewHandler.openView(ViewFactory.OVERVIEW);
+        viewHandler.openView(ViewFactory.USERS_LIST);
     }
 
     @FXML
