@@ -24,10 +24,39 @@ public class SqlUserDao implements UserDao {
     }
 
     @Override
+    public User getByEmailAndPassword(String email, String password) throws SQLException {
+        try (var connection = dbConnector.connect()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM bank.users WHERE email = ? AND password = ?");
+            statement.setString(1, email);
+            statement.setString(2, password);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return new User(
+                        result.getString("cpr_number"),
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        UserRole.valueOf(result.getInt("role")),
+                        result.getString("address"),
+                        result.getString("postal_code"),
+                        result.getString("city"),
+                        result.getString("phone_number"),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getBoolean("is_verified"),
+                        result.getDate("date_of_birth").getTime(),
+                        result.getDate("created_at").getTime()
+                );
+            } else {
+                return null;
+            }
+        }
+    }
+
+    @Override
     public User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException {
         try (var connection = dbConnector.connect()) {
             var currentTime = System.currentTimeMillis();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setDate(3, new Date(dateOfBirth));
@@ -39,6 +68,7 @@ public class SqlUserDao implements UserDao {
             statement.setString(9, password);
             statement.setString(10, cpr);
             statement.setDate(11, new Date(currentTime));
+            statement.setInt(12, UserRole.CUSTOMER.ordinal());
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
             keys.next();

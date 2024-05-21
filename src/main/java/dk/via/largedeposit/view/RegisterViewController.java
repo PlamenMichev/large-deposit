@@ -65,5 +65,15 @@ public class RegisterViewController {
     }
 
     public void reset() {
+        firstNameField.setText("");
+        lastNameField.setText("");
+        dobPicker.setValue(null);
+        addressField.setText("");
+        postalCodeField.setText("");
+        cityField.setText("");
+        phoneField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
+        cprField.setText("");
     }
 }

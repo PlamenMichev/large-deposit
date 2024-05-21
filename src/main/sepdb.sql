@@ -1,3 +1,7 @@
+
+
+
+
 CREATE SCHEMA bank;
 SET SCHEMA 'bank';
 CREATE TABLE users (
@@ -6,7 +10,7 @@ CREATE TABLE users (
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     date_of_birth TIMESTAMP,
-    role VARCHAR(40),
+    role int,
     address VARCHAR(50),
     city VARCHAR(40),
     postal_code VARCHAR(10),
@@ -14,7 +18,7 @@ CREATE TABLE users (
     email VARCHAR(50),
     password VARCHAR(100),
     is_verified BOOLEAN,
-    created_at TIMESTAMP,
+    created_at TIMESTAMP
 );
 
 CREATE TABLE accounts(
@@ -29,7 +33,7 @@ CREATE TABLE accounts(
     deactivation_reason VARCHAR(100),
     created_at TIMESTAMP,
     PRIMARY KEY(number, registration),
-    FOREIGN KEY(user_id) REFERENCES users,
+    FOREIGN KEY(user_id) REFERENCES users
 );
 
 CREATE TABLE credit_accounts(
@@ -46,7 +50,7 @@ CREATE TABLE credit_accounts(
     created_at TIMESTAMP,
     PRIMARY KEY(number, registration),
     FOREIGN KEY(number, registration) REFERENCES accounts,
-    FOREIGN KEY(user_id) REFERENCES users,
+    FOREIGN KEY(user_id) REFERENCES users
 );
 
 CREATE TABLE savings_accounts(
@@ -65,7 +69,7 @@ CREATE TABLE savings_accounts(
     created_at TIMESTAMP,
     PRIMARY KEY(number, registration),
     FOREIGN KEY(number, registration) REFERENCES accounts,
-    FOREIGN KEY(user_id) REFERENCES users,
+    FOREIGN KEY(user_id) REFERENCES users
 );
 
 CREATE TABLE transactions(
@@ -86,10 +90,9 @@ CREATE TABLE transactions(
         REFERENCES accounts(number, registration),
     FOREIGN KEY(receiving_account_number, receiving_account_registration)
         REFERENCES accounts(number, registration),
-    FOREIGN KEY(approved_by) REFERENCES users(id),
+    FOREIGN KEY(approved_by) REFERENCES users(id)
 );
 
 
-INSERT INTO users VALUES(DEFAULT, '1111111111', 'Adam', 'Smith', '06/02/1989', 'Admin', 'Kamtjatka', 'Horsens', '8700', '3333333333', 'admin@email.com', 'password1', TRUE, '12/10/2000');
-INSERT INTO users VALUES(DEFAULT, '2222222222', 'Alexander', 'Johnson', '09/10/1999', 'Admin', 'Slotsgade', 'Horsens', '8700', '3597654871', 'admin22@email.com', 'password90', TRUE, '01/01/2010');
-
+INSERT INTO users VALUES(DEFAULT, '1111111111', 'Adam', 'Smith', '06/02/1989', 0, 'Kamtjatka', 'Horsens', '8700', '3333333333', 'admin@email.com', 'password1', TRUE, '12/10/2000');
+INSERT INTO users VALUES(DEFAULT, '2222222222', 'Alexander', 'Johnson', '09/10/1999', 0, 'Slotsgade', 'Horsens', '8700', '3597654871', 'admin22@email.com', 'password90', TRUE, '01/01/2010');

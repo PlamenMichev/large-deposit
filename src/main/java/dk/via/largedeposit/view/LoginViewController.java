@@ -23,14 +23,18 @@ public class LoginViewController {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+
+        this.viewModel.bindProperties(emailField.textProperty(), passwordField.textProperty());
     }
 
     @FXML
     private void handleLoginButtonAction() {
-        String email = emailField.getText();
-        String password = passwordField.getText();
-
-        viewHandler.openView(ViewFactory.USERS_LIST);
+        try {
+            this.viewModel.login();
+            viewHandler.openView(ViewFactory.USERS_LIST);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -43,5 +47,7 @@ public class LoginViewController {
     }
 
     public void reset() {
+        emailField.setText("");
+        passwordField.setText("");
     }
 }

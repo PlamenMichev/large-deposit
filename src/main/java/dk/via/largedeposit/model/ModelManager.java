@@ -30,6 +30,18 @@ public class ModelManager implements Model, PropertyChangeListener {
     }
 
     @Override
+    public void login(String email, String password) {
+        try
+        {
+            this.client.login(email, password);
+        }
+        catch (RemoteException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

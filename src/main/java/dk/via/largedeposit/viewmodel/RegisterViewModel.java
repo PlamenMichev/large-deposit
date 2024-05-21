@@ -1,11 +1,7 @@
 package dk.via.largedeposit.viewmodel;
 
 import dk.via.largedeposit.model.Model;
-import dk.via.largedeposit.server.Server;
 import javafx.beans.property.*;
-import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

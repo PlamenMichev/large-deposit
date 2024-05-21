@@ -27,6 +27,11 @@ public class ClientImplementation extends UnicastRemoteObject implements
     }
 
     @Override
+    public void login(String email, String password) throws RemoteException {
+        this.server.login(email, password);
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

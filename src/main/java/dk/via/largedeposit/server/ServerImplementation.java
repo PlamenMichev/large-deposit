@@ -30,6 +30,20 @@ public class ServerImplementation implements Server {
         }
     }
 
+    @Override
+    public void login(String email, String password) throws RemoteException {
+        try {
+            var userResponse = SqlUserDao.getInstance().getByEmailAndPassword(email, password);
+            if (userResponse == null) {
+                throw new RuntimeException("User not found");
+            }
+
+            this.support.firePropertyChange(ObserverEvents.USER_LOGGED_IN, null, userResponse);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public void addPropertyChangeListener(
             RemotePropertyChangeListener<Serializable> listener) throws RemoteException {
