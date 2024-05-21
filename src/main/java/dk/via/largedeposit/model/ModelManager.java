@@ -42,6 +42,11 @@ public class ModelManager implements Model, PropertyChangeListener {
     }
 
     @Override
+    public User getCurrentUser() {
+        return null;
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

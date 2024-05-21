@@ -30,8 +30,8 @@ public class LoginViewController {
     @FXML
     private void handleLoginButtonAction() {
         try {
-            this.viewModel.login();
-            viewHandler.openView(ViewFactory.USERS_LIST);
+            var redirectUrl = this.viewModel.login();
+            viewHandler.openView(redirectUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import dk.via.largedeposit.model.Model;
 import dk.via.largedeposit.model.ModelManager;
 import dk.via.largedeposit.model.User;
 import dk.via.largedeposit.server.Server;
+import dk.via.largedeposit.shared.ObserverEvents;
 import dk.via.remote.observer.RemotePropertyChangeListener;
 
 import java.beans.PropertyChangeEvent;
@@ -42,12 +43,19 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model, Pro
     }
 
     @Override
+    public User getCurrentUser() {
+        return this.currentUser;
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         delegate.addPropertyChangeListener(listener);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("Property change: in proxy " + evt);
+        if (evt.getPropertyName().equals(ObserverEvents.USER_CREATED) || evt.getPropertyName().equals(ObserverEvents.USER_LOGGED_IN)) {
+            currentUser = (User) evt.getNewValue();
+        }
     }
 }

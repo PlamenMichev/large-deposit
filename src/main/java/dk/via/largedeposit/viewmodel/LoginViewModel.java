@@ -1,6 +1,9 @@
 package dk.via.largedeposit.viewmodel;
 
 import dk.via.largedeposit.model.Model;
+import dk.via.largedeposit.model.enums.UserRole;
+import dk.via.largedeposit.view.ViewFactory;
+import dk.via.largedeposit.view.ViewHandler;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -22,7 +25,13 @@ public class LoginViewModel {
         password.bindBidirectional(this.password);
     }
 
-    public void login() {
+    public String login() {
         this.model.login(email.getValue(), password.getValue());
+        var currentUser = this.model.getCurrentUser();
+        if (currentUser.getRole() == UserRole.CUSTOMER) {
+            return ViewFactory.OVERVIEW;
+        }
+
+        return ViewFactory.USERS_LIST;
     }
 }

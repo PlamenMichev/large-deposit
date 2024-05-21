@@ -56,7 +56,7 @@ public class SqlUserDao implements UserDao {
     public User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException {
         try (var connection = dbConnector.connect()) {
             var currentTime = System.currentTimeMillis();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setDate(3, new Date(dateOfBirth));
