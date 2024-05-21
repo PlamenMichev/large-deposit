@@ -1,5 +1,5 @@
 package dk.via.largedeposit.view;
-;
+
 import dk.via.largedeposit.model.Account;
 import dk.via.largedeposit.model.User;
 import dk.via.largedeposit.model.enums.Currency;

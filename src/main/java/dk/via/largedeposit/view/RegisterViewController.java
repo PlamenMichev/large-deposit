@@ -46,11 +46,18 @@ public class RegisterViewController {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+
+        this.viewModel.bindProperties(firstNameField.textProperty(), lastNameField.textProperty(), dobPicker.valueProperty(), addressField.textProperty(), postalCodeField.textProperty(), cityField.textProperty(), phoneField.textProperty(), emailField.textProperty(), passwordField.textProperty(), cprField.textProperty());
     }
 
     @FXML
     private void handleRegisterButtonAction() {
-        viewHandler.openView(ViewFactory.OVERVIEW);
+        try {
+            this.viewModel.register();
+            viewHandler.openView(ViewFactory.OVERVIEW);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Region getRoot() {

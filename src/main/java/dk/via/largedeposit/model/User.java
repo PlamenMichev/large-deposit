@@ -4,7 +4,7 @@ import dk.via.largedeposit.model.enums.UserRole;
 
 public class User {
     private int id;
-    private final String cvrNumber;
+    private String cprNumber;
     private String firstName;
     private String lastName;
     private UserRole role;
@@ -20,7 +20,7 @@ public class User {
 
     // Admin constructor
     public User(
-            String cvrNumber,
+            String cprNumber,
             String firstName,
             String lastName,
             UserRole role,
@@ -34,7 +34,7 @@ public class User {
             long dateOfBirth,
             long createdAt) {
         id = -1;
-        this.cvrNumber = cvrNumber;
+        this.cprNumber = cprNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
@@ -53,8 +53,8 @@ public class User {
         return id;
     }
 
-    public String getCvrNumber() {
-        return cvrNumber;
+    public String getCprNumber() {
+        return cprNumber;
     }
 
     public String getFirstName() {
