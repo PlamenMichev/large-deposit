@@ -21,18 +21,8 @@ public class UsersListViewController {
         this.viewModel = viewModel;
         this.root = root;
 
-        var user = new User("1234123412", "John", "Doe", UserRole.CUSTOMER, "Test address",
-                "1234", "City", "93833920", "plamen@mail.dl", "parola123",
-                true, 10000, 100000);
-        var user1 = new User("1234123412", "John", "Doe", UserRole.CUSTOMER, "Test address",
-                "1234", "City", "93833920", "plamen@mail.dl", "parola123",
-                true, 10000, 100000);
-        var user2 = new User("1234123412", "John", "Doe", UserRole.CUSTOMER, "Test address",
-                "1234", "City", "93833920", "plamen@mail.dl", "parola123",
-                true, 10000, 100000);
-
-        var collection = FXCollections.observableArrayList(user, user1, user2);
-        userTable.setItems(collection);
+        var users = viewModel.getUnverifiedUsers();
+        userTable.setItems(users);
     }
 
     @FXML
@@ -42,7 +32,8 @@ public class UsersListViewController {
         if (selectedUser != null) {
             System.out.println("Selected user: " + selectedUser.getFirstName() + " " + selectedUser.getLastName());
             // Update the table view
-            userTable.refresh();
+//            userTable.refresh();
+            this.viewModel.addUser(selectedUser);
         }
     }
 

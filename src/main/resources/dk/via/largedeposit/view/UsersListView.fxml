@@ -12,7 +12,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.largedeposit.view.UsersListViewController" prefWidth="800" prefHeight="600">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.via.largedeposit.view.UsersListViewController" prefWidth="850" prefHeight="600">
     <top>
         <HBox spacing="10">
             <padding>
@@ -38,11 +38,60 @@
     </top>
 
     <center>
-        <TableView fx:id="userTable" prefWidth="600">
+        <TableView fx:id="userTable" prefWidth="800">
             <columns>
-                <TableColumn text="Id" prefWidth="150">
+                <TableColumn text="First Name" prefWidth="100">
                     <cellValueFactory>
-                        <PropertyValueFactory property="id"/>
+                        <PropertyValueFactory property="firstName"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="Last Name" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="lastName"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="Address" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="address"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="Postal Code" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="postalCode"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="City" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="city"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="Phone Number" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="phoneNumber"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="CPR" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="cprNumber"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columns>
+                <TableColumn text="Is Active" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="isActive"/>
                     </cellValueFactory>
                 </TableColumn>
             </columns>

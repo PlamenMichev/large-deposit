@@ -1,14 +1,17 @@
 package dk.via.largedeposit.client;
 
+import dk.via.largedeposit.model.User;
 import dk.via.largedeposit.server.Server;
 import dk.via.remote.observer.RemotePropertyChangeEvent;
 import dk.via.remote.observer.RemotePropertyChangeListener;
+import javafx.application.Platform;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class ClientImplementation extends UnicastRemoteObject implements
         RemotePropertyChangeListener<Serializable>, Client {
@@ -22,13 +25,18 @@ public class ClientImplementation extends UnicastRemoteObject implements
         this.support = new PropertyChangeSupport(this);
     }
     @Override
-    public void register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
-        this.server.register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
+    public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
+        return this.server.register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
     }
 
     @Override
-    public void login(String email, String password) throws RemoteException {
-        this.server.login(email, password);
+    public User login(String email, String password) throws RemoteException {
+        return this.server.login(email, password);
+    }
+
+    @Override
+    public ArrayList<User> getUsers() throws RemoteException {
+        return this.server.getUsers();
     }
 
     @Override
@@ -38,6 +46,6 @@ public class ClientImplementation extends UnicastRemoteObject implements
 
     @Override
     public void propertyChange(RemotePropertyChangeEvent<Serializable> evt) throws RemoteException {
-        support.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
+        Platform.runLater(() -> support.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue()));
     }
 }

@@ -1,11 +1,13 @@
 package dk.via.largedeposit.model;
 
 import dk.via.largedeposit.client.Client;
+import javafx.application.Platform;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class ModelManager implements Model, PropertyChangeListener {
     private final PropertyChangeSupport support;
@@ -18,10 +20,10 @@ public class ModelManager implements Model, PropertyChangeListener {
     }
 
     @Override
-    public void register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) {
+    public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) {
         try
         {
-            this.client.register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
+            return this.client.register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
         }
         catch (RemoteException e)
         {
@@ -30,15 +32,20 @@ public class ModelManager implements Model, PropertyChangeListener {
     }
 
     @Override
-    public void login(String email, String password) {
+    public User login(String email, String password) {
         try
         {
-            this.client.login(email, password);
+            return this.client.login(email, password);
         }
         catch (RemoteException e)
         {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public ArrayList<User> getUsers() throws RemoteException {
+        return this.client.getUsers();
     }
 
     @Override
@@ -53,6 +60,6 @@ public class ModelManager implements Model, PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        support.firePropertyChange(evt);
+        Platform.runLater(() -> support.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue()));
     }
 }

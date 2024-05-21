@@ -9,6 +9,7 @@ import dk.via.remote.observer.RemotePropertyChangeSupport;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ServerImplementation implements Server {
     private final RemotePropertyChangeSupport<Serializable> support;
@@ -18,20 +19,22 @@ public class ServerImplementation implements Server {
     }
 
     @Override
-    public void register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
+    public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
         try {
 
             var userResponse = SqlUserDao.getInstance().register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
             if (userResponse != null) {
                 this.support.firePropertyChange(ObserverEvents.USER_CREATED, null, userResponse);
             }
+
+            return userResponse;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void login(String email, String password) throws RemoteException {
+    public User login(String email, String password) throws RemoteException {
         try {
             var userResponse = SqlUserDao.getInstance().getByEmailAndPassword(email, password);
             if (userResponse == null) {
@@ -39,6 +42,16 @@ public class ServerImplementation implements Server {
             }
 
             this.support.firePropertyChange(ObserverEvents.USER_LOGGED_IN, null, userResponse);
+            return userResponse;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<User> getUsers() throws RemoteException {
+        try {
+            return SqlUserDao.getInstance().getUsers();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

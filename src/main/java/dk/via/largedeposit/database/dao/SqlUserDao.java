@@ -6,6 +6,7 @@ import dk.via.largedeposit.model.enums.UserRole;
 
 import java.sql.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SqlUserDao implements UserDao {
     private static UserDao instance;
@@ -56,7 +57,7 @@ public class SqlUserDao implements UserDao {
     public User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException {
         try (var connection = dbConnector.connect()) {
             var currentTime = System.currentTimeMillis();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at, role, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setDate(3, new Date(dateOfBirth));
@@ -69,11 +70,39 @@ public class SqlUserDao implements UserDao {
             statement.setString(10, cpr);
             statement.setDate(11, new Date(currentTime));
             statement.setInt(12, UserRole.CUSTOMER.ordinal());
+            statement.setBoolean(13, false);
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);
             return new User(cpr, firstName, lastName, UserRole.CUSTOMER, address, postalCode, city, phone, email, password, false, dateOfBirth, currentTime);
+        }
+    }
+
+    @Override
+    public ArrayList<User> getUsers() throws SQLException {
+        try (var connection = dbConnector.connect()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM bank.users");
+            ResultSet result = statement.executeQuery();
+            ArrayList<User> users = new ArrayList<>();
+            while (result.next()) {
+                users.add(new User(
+                        result.getString("cpr_number"),
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        UserRole.valueOf(result.getInt("role")),
+                        result.getString("address"),
+                        result.getString("postal_code"),
+                        result.getString("city"),
+                        result.getString("phone_number"),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getBoolean("is_verified"),
+                        result.getDate("date_of_birth").getTime(),
+                        result.getDate("created_at").getTime()
+                ));
+            }
+            return users;
         }
     }
 }

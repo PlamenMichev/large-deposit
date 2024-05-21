@@ -8,7 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
-public class RegisterViewModel implements PropertyChangeListener {
+public class RegisterViewModel {
 
     private StringProperty firstName;
     private StringProperty lastName;
@@ -25,7 +25,6 @@ public class RegisterViewModel implements PropertyChangeListener {
 
     public RegisterViewModel(Model model) {
         this.model = model;
-        this.model.addPropertyChangeListener(this);
         this.firstName = new SimpleStringProperty("");
         this.lastName = new SimpleStringProperty("");
         this.dob = new SimpleObjectProperty<>(LocalDate.now());
@@ -53,10 +52,5 @@ public class RegisterViewModel implements PropertyChangeListener {
 
     public void register() {
         this.model.register(firstName.getValue(), lastName.getValue(), dob.getValue().getLong(ChronoField.EPOCH_DAY), address.getValue(), postalCode.getValue(), city.getValue(), phone.getValue(), email.getValue(), password.getValue(), cpr.getValue());
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("Property changed: " + evt.getPropertyName());
     }
 }

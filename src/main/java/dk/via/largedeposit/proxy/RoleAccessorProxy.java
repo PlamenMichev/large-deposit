@@ -12,34 +12,41 @@ import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
-public class RoleAccessorProxy extends UnicastRemoteObject implements Model, PropertyChangeListener {
+public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
     private final Model delegate;
     private User currentUser;
 
     public RoleAccessorProxy(Model delegate) throws RemoteException {
         this.delegate = delegate;
-        this.delegate.addPropertyChangeListener(this);
         this.currentUser = null;
     }
 
     @Override
-    public void register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) {
+    public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) {
         if (currentUser != null) {
             throw new IllegalStateException("You are already logged in");
         }
 
-        delegate.register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
+        this.currentUser = delegate.register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
+        return this.currentUser;
     }
 
     @Override
-    public void login(String email, String password) {
+    public User login(String email, String password) {
         if (currentUser != null) {
             throw new IllegalStateException("You are already logged in");
         }
 
         System.out.println("Login in proxy");
-        delegate.login(email, password);
+        this.currentUser = delegate.login(email, password);
+        return this.currentUser;
+    }
+
+    @Override
+    public ArrayList<User> getUsers() throws RemoteException {
+        return delegate.getUsers();
     }
 
     @Override
@@ -50,12 +57,5 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model, Pro
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         delegate.addPropertyChangeListener(listener);
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(ObserverEvents.USER_CREATED) || evt.getPropertyName().equals(ObserverEvents.USER_LOGGED_IN)) {
-            currentUser = (User) evt.getNewValue();
-        }
     }
 }

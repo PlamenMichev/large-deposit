@@ -2,9 +2,11 @@ package dk.via.largedeposit.database.dao;
 
 import dk.via.largedeposit.model.User;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public interface UserDao {
     User getByEmailAndPassword(String email, String password) throws SQLException;
     User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException;
+    ArrayList<User> getUsers() throws SQLException;
 }
