@@ -1,5 +1,6 @@
 package dk.via.largedeposit.database.dao;
 
+import dk.via.largedeposit.database.DatabaseConnector;
 import dk.via.largedeposit.model.User;
 import dk.via.largedeposit.model.enums.UserRole;
 
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 
 public class SqlUserDao implements UserDao {
     private static UserDao instance;
+    private final DatabaseConnector dbConnector = new DatabaseConnector();
 
     private SqlUserDao() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
@@ -21,15 +23,11 @@ public class SqlUserDao implements UserDao {
         return instance;
     }
 
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=jdbc", "postgres", "admin");
-    }
-
     @Override
     public User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException {
-        try (Connection connection = getConnection()) {
+        try (var connection = dbConnector.connect()) {
             var currentTime = System.currentTimeMillis();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (first_name, last_name, date_of_birth, address, postal_code, city, phone, email, password, cpr_number, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO bank.users (first_name, last_name, date_of_birth, address, postal_code, city, phone_number, email, password, cpr_number, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setDate(3, new Date(dateOfBirth));

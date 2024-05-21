@@ -2,6 +2,7 @@ package dk.via.largedeposit.server;
 
 import dk.via.largedeposit.database.dao.SqlUserDao;
 import dk.via.largedeposit.model.User;
+import dk.via.largedeposit.shared.ObserverEvents;
 import dk.via.remote.observer.RemotePropertyChangeListener;
 import dk.via.remote.observer.RemotePropertyChangeSupport;
 
@@ -17,16 +18,13 @@ public class ServerImplementation implements Server {
     }
 
     @Override
-    public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
+    public void register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
         try {
-            this.support.firePropertyChange("register", null, "Registering user");
-            if (true) {
-                return null;
-            }
 
-            throw new SQLException("Not implemented yet");
-//            var userResponse = SqlUserDao.getInstance().register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
-//            return userResponse;
+            var userResponse = SqlUserDao.getInstance().register(firstName, lastName, dob, address, postalCode, city, phone, email, password, cpr);
+            if (userResponse != null) {
+                this.support.firePropertyChange(ObserverEvents.USER_CREATED, null, userResponse);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

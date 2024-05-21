@@ -2,6 +2,7 @@ package dk.via.largedeposit;
 
 import dk.via.largedeposit.client.Client;
 import dk.via.largedeposit.client.ClientImplementation;
+import dk.via.largedeposit.database.DatabaseConnector;
 import dk.via.largedeposit.model.ModelManager;
 import dk.via.largedeposit.server.Server;
 import dk.via.largedeposit.server.ServerApplication;
