@@ -7,12 +7,19 @@ import dk.via.largedeposit.view.ViewHandler;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * View Model for login
+ */
 public class LoginViewModel {
 
     private StringProperty email;
     private StringProperty password;
     private final Model model;
 
+    /**
+     * Constructor
+     * @param model the model
+     */
     public LoginViewModel(Model model) {
 
         this.model = model;
@@ -25,6 +32,10 @@ public class LoginViewModel {
         password.bindBidirectional(this.password);
     }
 
+    /**
+     * Method used to login a user
+     * @return the overview from ViewFactory
+     */
     public String login() {
         this.model.login(email.getValue(), password.getValue());
         var currentUser = this.model.getCurrentUser();

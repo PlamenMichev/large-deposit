@@ -2,6 +2,9 @@ package dk.via.largedeposit.viewmodel;
 
 import dk.via.largedeposit.model.Model;
 
+/**
+ * Class used to manage all view models
+ */
 public class ViewModelFactory {
     private final LoginViewModel loginViewModel;
     private final RegisterViewModel registerViewModel;
@@ -13,6 +16,10 @@ public class ViewModelFactory {
     private final AccountsListViewModel accountsListViewModel;
     private final TransactionsListViewModel transactionsListViewModel;
 
+    /**
+     * Constructor
+     * @param model the model
+     */
     public ViewModelFactory(Model model) {
         this.loginViewModel = new LoginViewModel(model);
         this.registerViewModel = new RegisterViewModel(model);
@@ -25,38 +32,74 @@ public class ViewModelFactory {
         this.transactionsListViewModel = new TransactionsListViewModel(model);
     }
 
+    /**
+     * Getter
+     * @return loginViewModel
+     */
     public LoginViewModel getLoginViewModel() {
         return loginViewModel;
     }
 
+    /**
+     * Getter
+     * @return registerViewModel
+     */
     public RegisterViewModel getRegisterViewModel() {
         return registerViewModel;
     }
 
+    /**
+     * Getter
+     * @return overviewViewModel
+     */
     public OverviewViewModel getOverviewViewModel() {
         return overviewViewModel;
     }
 
+    /**
+     * Getter
+     * @return createTransactionViewModel
+     */
     public CreateTransactionViewModel getCreateTransactionViewModel() {
         return createTransactionViewModel;
     }
 
+    /**
+     * Getter
+     * @return accountDetailsViewModel
+     */
     public AccountDetailsViewModel getAccountDetailsViewModel() {
         return accountDetailsViewModel;
     }
 
+    /**
+     * Getter
+     * @return createAccountViewModel
+     */
     public CreateAccountViewModel getCreateAccountViewModel() {
         return createAccountViewModel;
     }
 
+    /**
+     * Getter
+     * @return usersListViewModel
+     */
     public UsersListViewModel getUsersListViewModel() {
         return usersListViewModel;
     }
 
+    /**
+     * Getter
+     * @return accountsListViewModel
+     */
     public AccountsListViewModel getAccountsListViewModel() {
         return accountsListViewModel;
     }
 
+    /**
+     * Getter
+     * @return transactionsListViewModel
+     */
     public TransactionsListViewModel getTransactionsListViewModel() {
         return transactionsListViewModel;
     }

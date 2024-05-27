@@ -23,6 +23,12 @@ public class TransactionsListViewController {
     private ViewHandler viewHandler;
     private Region root;
 
+    /**
+     * Initializer
+     * @param viewHandler the View Handler
+     * @param viewModel the View Model
+     * @param root the root
+     */
     public void init (ViewHandler viewHandler, TransactionsListViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
@@ -47,25 +53,41 @@ public class TransactionsListViewController {
         transactionList.setItems(observableCollection);
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleAccountsButtonAction() {
         viewHandler.openView(ViewFactory.ACCOUNTS_LIST);
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleUsersListButtonAction() {
         viewHandler.openView(ViewFactory.USERS_LIST);
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleActivateDeactivateButtonAction() {
         System.out.println("Activate/Deactivate button clicked");
     }
 
+    /**
+     * Getter
+     * @return the root
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Reset
+     */
     public void reset() {
     }
 }

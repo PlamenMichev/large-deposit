@@ -8,14 +8,26 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * DAO for account info
+ */
 public class SqlAccountDao implements AccountDao {
     private static AccountDao instance;
     private final DatabaseConnector dbConnector = new DatabaseConnector();
 
+    /**
+     * Constructor
+     * @throws SQLException
+     */
     public SqlAccountDao() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * Getter
+     * @return instance of DAO
+     * @throws SQLException
+     */
     public synchronized static AccountDao getInstance() throws SQLException {
         if (instance == null) {
             instance = new SqlAccountDao();
@@ -24,6 +36,10 @@ public class SqlAccountDao implements AccountDao {
         return instance;
     }
 
+    /**
+     * Getter
+     * @return all accounts
+     */
     @Override
     public ArrayList<Account> getAccounts() {
         try (var connection = dbConnector.connect()) {

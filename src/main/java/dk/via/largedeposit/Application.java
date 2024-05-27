@@ -13,7 +13,19 @@ import javafx.stage.Stage;
 
 import java.rmi.registry.LocateRegistry;
 
+/**
+ * Class used to start the program
+ */
 public class Application extends javafx.application.Application {
+
+    /**
+     * The start method
+     * @param primaryStage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Server server = (Server) LocateRegistry.getRegistry(ServerApplication.REGISTRY_PORT).lookup(ServerApplication.SERVER_OBJECT_NAME);

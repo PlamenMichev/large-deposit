@@ -11,6 +11,9 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Implementation of the server
+ */
 public class ServerImplementation implements Server {
     private final RemotePropertyChangeSupport<Serializable> support;
 
@@ -18,6 +21,21 @@ public class ServerImplementation implements Server {
         this.support = new RemotePropertyChangeSupport<>();
     }
 
+    /**
+     * Method used when a user registers
+     * @param firstName first name of user
+     * @param lastName last name of user
+     * @param dob date of birth of user
+     * @param address address of user
+     * @param postalCode postal code of user
+     * @param city city of user
+     * @param phone phone number of user
+     * @param email email of user
+     * @param password password of user
+     * @param cpr cpr of user
+     * @return the response coming from user
+     * @throws RemoteException
+     */
     @Override
     public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws RemoteException {
         try {
@@ -33,6 +51,13 @@ public class ServerImplementation implements Server {
         }
     }
 
+    /**
+     * Method used when a user logs in
+     * @param email the email of the user
+     * @param password the password of the user
+     * @return the response coming from the user
+     * @throws RemoteException
+     */
     @Override
     public User login(String email, String password) throws RemoteException {
         try {
@@ -48,6 +73,11 @@ public class ServerImplementation implements Server {
         }
     }
 
+    /**
+     * Getter
+     * @return all users
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<User> getUsers() throws RemoteException {
         try {
@@ -57,6 +87,11 @@ public class ServerImplementation implements Server {
         }
     }
 
+    /**
+     * Toggler for the activity status
+     * @param id the id of an user
+     * @throws RemoteException
+     */
     @Override
     public void toggleUserActiveStatus(int id) throws RemoteException {
         try {
