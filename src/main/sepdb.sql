@@ -1,7 +1,3 @@
-
-
-
-
 CREATE SCHEMA bank;
 SET SCHEMA 'bank';
 CREATE TABLE users (

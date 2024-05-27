@@ -57,6 +57,15 @@ public class ServerImplementation implements Server {
         }
     }
 
+    @Override
+    public void toggleUserActiveStatus(int id) throws RemoteException {
+        try {
+            SqlUserDao.getInstance().toggleUserActiveStatus(id);
+            this.support.firePropertyChange(ObserverEvents.USER_ACTIVE_STATUS_TOGGLED, null, id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void addPropertyChangeListener(
             RemotePropertyChangeListener<Serializable> listener) throws RemoteException {

@@ -3,6 +3,7 @@ package dk.via.largedeposit.proxy;
 import dk.via.largedeposit.model.Model;
 import dk.via.largedeposit.model.ModelManager;
 import dk.via.largedeposit.model.User;
+import dk.via.largedeposit.model.enums.UserRole;
 import dk.via.largedeposit.server.Server;
 import dk.via.largedeposit.shared.ObserverEvents;
 import dk.via.remote.observer.RemotePropertyChangeListener;
@@ -46,12 +47,33 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
 
     @Override
     public ArrayList<User> getUsers() throws RemoteException {
+        if (currentUser == null) {
+            throw new IllegalStateException("You are not logged in");
+        }
+
+        if (currentUser.getRole() != UserRole.ADMIN) {
+            throw new IllegalArgumentException("You are not authorized to view users");
+        }
+
         return delegate.getUsers();
     }
 
     @Override
     public User getCurrentUser() {
         return this.currentUser;
+    }
+
+    @Override
+    public void toggleUserActiveStatus(int id) {
+        if (currentUser == null) {
+            throw new IllegalStateException("You are not logged in");
+        }
+
+        if (currentUser.getRole() != UserRole.ADMIN) {
+            throw new IllegalArgumentException("You are not authorized to toggle user active status");
+        }
+
+        delegate.toggleUserActiveStatus(id);
     }
 
     @Override

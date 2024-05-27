@@ -8,5 +8,6 @@ import java.util.ArrayList;
 public interface UserDao {
     User getByEmailAndPassword(String email, String password) throws SQLException;
     User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException;
+    void toggleUserActiveStatus(int id) throws SQLException;
     ArrayList<User> getUsers() throws SQLException;
 }

@@ -40,6 +40,11 @@ public class ClientImplementation extends UnicastRemoteObject implements
     }
 
     @Override
+    public void toggleUserActiveStatus(int id) throws RemoteException {
+        this.server.toggleUserActiveStatus(id);
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

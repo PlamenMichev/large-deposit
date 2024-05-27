@@ -9,5 +9,6 @@ public interface Model {
     User login(String email, String password);
     ArrayList<User> getUsers() throws RemoteException;
     User getCurrentUser();
+    void toggleUserActiveStatus(int id);
     void addPropertyChangeListener(PropertyChangeListener listener);
 }

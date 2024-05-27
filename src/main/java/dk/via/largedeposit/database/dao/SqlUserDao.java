@@ -80,6 +80,15 @@ public class SqlUserDao implements UserDao {
     }
 
     @Override
+    public void toggleUserActiveStatus(int id) throws SQLException {
+        try (var connection = dbConnector.connect()) {
+            PreparedStatement statement = connection.prepareStatement("UPDATE bank.users SET is_verified = NOT is_verified WHERE id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
+    }
+
+    @Override
     public ArrayList<User> getUsers() throws SQLException {
         try (var connection = dbConnector.connect()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM bank.users");

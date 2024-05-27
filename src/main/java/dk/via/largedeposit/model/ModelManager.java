@@ -54,6 +54,18 @@ public class ModelManager implements Model, PropertyChangeListener {
     }
 
     @Override
+    public void toggleUserActiveStatus(int id) {
+        try
+        {
+            this.client.toggleUserActiveStatus(id);
+        }
+        catch (RemoteException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
