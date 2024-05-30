@@ -71,7 +71,7 @@ public class Account implements Serializable {
         return currency;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
@@ -93,5 +93,9 @@ public class Account implements Serializable {
 
     public User getUser() {
         return user;
+    }
+
+    public String getType() {
+        return "Debit";
     }
 }

@@ -10,6 +10,8 @@ module dk.via {
     opens dk.via.largedeposit.view to javafx.fxml;
     opens dk.via.largedeposit.model to javafx.base;
     opens dk.via.largedeposit to javafx.fxml;
+    opens dk.via.largedeposit.client to javafx.fxml;
+    opens dk.via.largedeposit.proxy to dk.via.tests;
 
     exports dk.via.largedeposit;
     exports dk.via.largedeposit.client;
@@ -17,8 +19,6 @@ module dk.via {
     exports dk.via.largedeposit.model to dk.via.tests;
     exports dk.via.largedeposit.model.enums to dk.via.tests;
     exports dk.via.largedeposit.view to dk.via.tests;
-    opens dk.via.largedeposit.client to javafx.fxml;
-    opens dk.via.largedeposit.proxy to dk.via.tests;
     exports dk.via.largedeposit.proxy;
     exports dk.via.largedeposit.viewmodel;
 }

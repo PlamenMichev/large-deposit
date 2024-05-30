@@ -7,6 +7,7 @@ import dk.via.largedeposit.model.enums.UserRole;
 import dk.via.largedeposit.viewmodel.OverviewViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -14,10 +15,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class OverviewViewController {
-
     @FXML
-    private GridPane accountList;
-
+    private TableView<Account> accountsTable;
     private OverviewViewModel viewModel;
     private ViewHandler viewHandler;
     private Region root;
@@ -28,32 +27,14 @@ public class OverviewViewController {
         this.root = root;
 
         var accounts = viewModel.getAccounts();
+        accountsTable.setItems(accounts);
 
-        // Populate the account list grid
-        int row = 0;
-        int col = 0;
-        // Populate the account list
-        for (Account account : accounts) {
-            Label accountInfoLabel = new Label(
-                    "Account Number: " + account.getAccountNumber() + "\n" +
-                            "Registration Number: " + account.getRegNumber()+ "\n" +
-                            "Title: " + account.getTitle() + "\n" +
-                            "Currency: " + account.getCurrency() + "\n" +
-                            "Balance: " + account.getBalance() + "\n" +
-                            "Active: " + (account.isActive() ? "Yes" : "No") + "\n" +
-                            "Iban: " + account.getIban() + "\n"
-            );
-
-            // Add border around the label
-            accountInfoLabel.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
-            accountInfoLabel.setOnMouseClicked((event) -> viewHandler.openView(ViewFactory.ACCOUNT_DETAILS));
-            accountList.add(accountInfoLabel, col, row);
-            col++;
-            if (col == 3) {
-                col = 0;
-                row++;
+        accountsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Perform your action here
+                this.viewHandler.openView(ViewFactory.ACCOUNT_DETAILS);
             }
-        }
+        });
     }
 
     @FXML

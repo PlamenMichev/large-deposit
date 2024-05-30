@@ -13,6 +13,14 @@
 <?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefWidth="800" prefHeight="600"
 fx:controller="dk.via.largedeposit.view.CreateAccountViewController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <top>
+        <VBox>
+            <Button text="Back" onAction="#handleBackButtonAction"/>
+        </VBox>
+    </top>
     <center>
         <VBox alignment="CENTER" spacing="10">
             <!-- Title -->

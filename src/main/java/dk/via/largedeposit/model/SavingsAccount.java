@@ -35,4 +35,9 @@ public class SavingsAccount extends Account {
     public long getLastPaymentDate() {
         return lastPaymentDate;
     }
+
+    @Override
+    public String getType() {
+        return "Savings";
+    }
 }

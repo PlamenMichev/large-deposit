@@ -7,15 +7,18 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefWidth="800" prefHeight="600"
-fx:controller="dk.via.largedeposit.view.OverviewViewController">
+            fx:controller="dk.via.largedeposit.view.OverviewViewController">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
     <center>
         <VBox spacing="10">
             <!-- Title -->
-            <Label text="Account Overview" style="-fx-font-size: 18pt;"/>
+            <Label text="Accounts Overview" style="-fx-font-size: 18pt;"/>
 
             <!-- Button to Create New Account -->
             <Button text="Create New Account" onAction="#handleCreateNewAccountButtonAction"/>
@@ -24,7 +27,64 @@ fx:controller="dk.via.largedeposit.view.OverviewViewController">
             <Button text="Create Transaction" onAction="#handleCreateTransactionButtonAction"/>
 
             <!-- Account List -->
-            <GridPane fx:id="accountList" alignment="CENTER" hgap="20" vgap="20"/>
+                <TableView fx:id="accountsTable" prefWidth="800">
+                    <columns>
+                        <TableColumn text="Title" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="title"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="Number" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="accountNumber"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="Reg Number" prefWidth="70">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="regNumber"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="Balance" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="balance"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="Currency" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="currency"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="IBAN" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="iban"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="Type" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="type"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columns>
+                        <TableColumn text="Is Active" prefWidth="75">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="isActive"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
         </VBox>
     </center>
 </BorderPane>

@@ -20,7 +20,7 @@
             </padding>
 
             <!-- Title -->
-            <Label text="Users Overview" style="-fx-font-size: 18pt;"/>
+            <Label text="Users List" style="-fx-font-size: 18pt;"/>
 
             <Region HBox.hgrow="ALWAYS" />
 

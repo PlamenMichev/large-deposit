@@ -44,10 +44,9 @@ public class CreditAccount extends Account {
     public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
     }
+
+    @Override
+    public String getType() {
+        return "Credit";
+    }
 }
-
-
-//// Inherits accounts
-//Table credit_accounts {
-//creditLimit decimal
-//}

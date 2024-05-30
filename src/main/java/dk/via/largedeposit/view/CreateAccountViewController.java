@@ -36,6 +36,11 @@ public class CreateAccountViewController {
         viewHandler.openView(ViewFactory.OVERVIEW);
     }
 
+    @FXML
+    private void handleBackButtonAction() {
+        viewHandler.openView(ViewFactory.OVERVIEW);
+    }
+
     public Region getRoot() {
         return root;
     }
