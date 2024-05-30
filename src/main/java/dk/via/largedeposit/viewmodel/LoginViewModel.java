@@ -28,6 +28,10 @@ public class LoginViewModel {
     public String login() {
         this.model.login(email.getValue(), password.getValue());
         var currentUser = this.model.getCurrentUser();
+        if (currentUser == null) {
+            return ViewFactory.LOGIN;
+        }
+
         if (currentUser.getRole() == UserRole.CUSTOMER) {
             return ViewFactory.OVERVIEW;
         }

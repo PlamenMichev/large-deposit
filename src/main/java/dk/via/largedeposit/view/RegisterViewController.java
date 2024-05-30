@@ -47,7 +47,17 @@ public class RegisterViewController {
         this.viewModel = viewModel;
         this.root = root;
 
-        this.viewModel.bindProperties(firstNameField.textProperty(), lastNameField.textProperty(), dobPicker.valueProperty(), addressField.textProperty(), postalCodeField.textProperty(), cityField.textProperty(), phoneField.textProperty(), emailField.textProperty(), passwordField.textProperty(), cprField.textProperty());
+        this.viewModel.bindProperties(
+                firstNameField.textProperty(),
+                lastNameField.textProperty(),
+                dobPicker.valueProperty(),
+                addressField.textProperty(),
+                postalCodeField.textProperty(),
+                cityField.textProperty(),
+                phoneField.textProperty(),
+                emailField.textProperty(),
+                passwordField.textProperty(),
+                cprField.textProperty());
     }
 
     @FXML
