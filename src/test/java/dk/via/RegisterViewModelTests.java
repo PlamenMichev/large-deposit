@@ -42,7 +42,7 @@ public class RegisterViewModelTests {
 
     @Test
     public void registerCustomerShouldInvokeTheModelMethod() {
-        var existingUser = new User("1234561234", "John", "Doe",
+        var existingUser = new User(1, "1234561234", "John", "Doe",
                 UserRole.CUSTOMER,
                 "Test Street 1", "1234", "Test City", "12345678",
                 newUserEmail, "password", true, currentDate,

@@ -54,7 +54,7 @@ public class ModelTests {
         var email = "test@test.dk";
         var password = "password";
         var cpr = "1234561234";
-        var mockUser = new User(cpr, firstName, lastName, UserRole.CUSTOMER, address, postalCode, city, phone, email, password, false, dateOfBirth, System.currentTimeMillis());
+        var mockUser = new User(1, cpr, firstName, lastName, UserRole.CUSTOMER, address, postalCode, city, phone, email, password, false, dateOfBirth, System.currentTimeMillis());
         when(serverMock.register(firstName, lastName, dateOfBirth, address, postalCode, city, phone, email, password, cpr)).thenReturn(mockUser);
 
         // Act
@@ -70,7 +70,7 @@ public class ModelTests {
         var email = "test@test.test";
         var password = "password";
 
-        var mockUser = new User(" ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
+        var mockUser = new User(1," ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
         when(serverMock.login(email, password)).thenReturn(mockUser);
 
         // Act
@@ -83,7 +83,7 @@ public class ModelTests {
     @Test
     public void getUsersShouldReturnUsers() throws RemoteException {
         // Arrange
-        var mockUser = new User(" ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
+        var mockUser = new User(1," ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
         when(serverMock.getUsers()).thenReturn(new ArrayList<>(List.of(mockUser)));
 
         // Act
@@ -114,7 +114,7 @@ public class ModelTests {
         // Arrange
         var email = "test@test.com";
         var password = "password";
-        var mockUser = new User(" ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
+        var mockUser = new User(1," ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
         when(serverMock.login(email, password)).thenReturn(mockUser);
 
         // Act
@@ -131,7 +131,7 @@ public class ModelTests {
         // Arrange
         var email = "test@test.st";
         var password = "password";
-        var mockUser = new User(" ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
+        var mockUser = new User(1," ", " ", " ", UserRole.CUSTOMER, " ", " ", " ", " ", " ", " ", false, 0, 0);
         when(serverMock.login(email, password)).thenReturn(mockUser);
 
         // Act

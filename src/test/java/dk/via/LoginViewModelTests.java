@@ -27,7 +27,7 @@ public class LoginViewModelTests {
     void setUp() {
         // Initialize mocks created above
         // This is done automatically by the @ExtendWith(MockitoExtension.class) annotation
-        var existingUser = new User("1234561234", "John", "Doe",
+        var existingUser = new User(1,"1234561234", "John", "Doe",
                 UserRole.CUSTOMER,
                 "Test Street 1", "1234", "Test City", "12345678",
                 existingUserEmail, "password", true, System.currentTimeMillis(),
@@ -57,7 +57,7 @@ public class LoginViewModelTests {
     @Test
     public void loginAdminShouldReturnAdminPage() {
         // Arrange
-        var existingAdmin = new User("1234561234", "John", "Doe",
+        var existingAdmin = new User(1,"1234561234", "John", "Doe",
                 UserRole.ADMIN,
                 "Test Street 1", "1234", "Test City", "12345678",
                 existingUserEmail, "password", true, System.currentTimeMillis(),
