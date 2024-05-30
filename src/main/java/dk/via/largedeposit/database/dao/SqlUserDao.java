@@ -8,14 +8,26 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * DAO for user info
+ */
 public class SqlUserDao implements UserDao {
     private static UserDao instance;
     private final DatabaseConnector dbConnector = new DatabaseConnector();
 
+    /**
+     * Constructor
+     * @throws SQLException
+     */
     private SqlUserDao() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * Getter
+     * @return instance of DAO
+     * @throws SQLException
+     */
     public synchronized static UserDao getInstance() throws SQLException {
         if (instance == null) {
             instance = new SqlUserDao();
@@ -24,6 +36,13 @@ public class SqlUserDao implements UserDao {
         return instance;
     }
 
+    /**
+     * Getter
+     * @param email email of user
+     * @param password password of user
+     * @return the user with that specific email and password
+     * @throws SQLException
+     */
     @Override
     public User getByEmailAndPassword(String email, String password) throws SQLException {
         try (var connection = dbConnector.connect()) {
@@ -54,6 +73,21 @@ public class SqlUserDao implements UserDao {
         }
     }
 
+    /**
+     * Method used for registration
+     * @param firstName first name of the user
+     * @param lastName last name of the user
+     * @param dateOfBirth date of birth of the user
+     * @param address address of the user
+     * @param postalCode postal code of the user
+     * @param city city of the user
+     * @param phone phone number of the user
+     * @param email email of the user
+     * @param password password of the user
+     * @param cpr cpr of the user
+     * @return new user with this details
+     * @throws SQLException
+     */
     @Override
     public User register(String firstName, String lastName, long dateOfBirth, String address, String postalCode, String city, String phone, String email, String password, String cpr) throws SQLException {
         try (var connection = dbConnector.connect()) {
@@ -80,6 +114,11 @@ public class SqlUserDao implements UserDao {
         }
     }
 
+    /**
+     * Toggler for activity status
+     * @param id the id of a user
+     * @throws SQLException
+     */
     @Override
     public void toggleUserActiveStatus(int id) throws SQLException {
         try (var connection = dbConnector.connect()) {
@@ -89,6 +128,11 @@ public class SqlUserDao implements UserDao {
         }
     }
 
+    /**
+     * Getter
+     * @return all users
+     * @throws SQLException
+     */
     @Override
     public ArrayList<User> getUsers() throws SQLException {
         try (var connection = dbConnector.connect()) {

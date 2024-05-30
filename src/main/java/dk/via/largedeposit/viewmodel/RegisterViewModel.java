@@ -8,6 +8,9 @@ import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
+/**
+ * View Model for registration
+ */
 public class RegisterViewModel {
 
     private StringProperty firstName;
@@ -23,6 +26,10 @@ public class RegisterViewModel {
 
     private final Model model;
 
+    /**
+     * Constructor
+     * @param model the model
+     */
     public RegisterViewModel(Model model) {
         this.model = model;
         this.firstName = new SimpleStringProperty("");
@@ -50,6 +57,9 @@ public class RegisterViewModel {
         cpr.bindBidirectional(this.cpr);
     }
 
+    /**
+     * Method used to register a user
+     */
     public void register() {
         this.model.register(firstName.getValue(), lastName.getValue(), dob.getValue().getLong(ChronoField.EPOCH_DAY), address.getValue(), postalCode.getValue(), city.getValue(), phone.getValue(), email.getValue(), password.getValue(), cpr.getValue());
     }

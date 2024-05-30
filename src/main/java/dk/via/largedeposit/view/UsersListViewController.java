@@ -14,6 +14,12 @@ public class UsersListViewController {
     private ViewHandler viewHandler;
     private Region root;
 
+    /**
+     * Initializer
+     * @param viewHandler the View Handler
+     * @param viewModel the View Model
+     * @param root the root
+     */
     public void init (ViewHandler viewHandler, UsersListViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
@@ -23,6 +29,9 @@ public class UsersListViewController {
         userTable.setItems(users);
     }
 
+    /**
+     * Handler
+     */
     @FXML
     public void handleActivateDeactivateButtonAction() {
         // Retrieve selected user from the table
@@ -35,20 +44,33 @@ public class UsersListViewController {
         }
     }
 
+    /**
+     * Handler
+     */
     @FXML
     public void handleTransactionsButtonAction() {
         viewHandler.openView(ViewFactory.TRANSACTIONS_LIST);
     }
 
+    /**
+     * Handler
+     */
     @FXML
     public void handleAccountsListButtonAction() {
         viewHandler.openView(ViewFactory.ACCOUNTS_LIST);
     }
 
+    /**
+     * Getter
+     * @return the root
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Reset
+     */
     public void reset() {
     }
 }

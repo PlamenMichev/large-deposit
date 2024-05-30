@@ -5,6 +5,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * View Model for creating accounts
+ */
 public class CreateAccountViewModel {
     private final Model model;
 
@@ -12,6 +15,10 @@ public class CreateAccountViewModel {
     private StringProperty title;
     private StringProperty currency;
 
+    /**
+     * Constructor
+     * @param model the model
+     */
     public CreateAccountViewModel(Model model) {
         this.model = model;
         this.type = new SimpleStringProperty();

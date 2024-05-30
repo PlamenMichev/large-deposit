@@ -20,6 +20,12 @@ public class CreateAccountViewController {
     private ViewHandler viewHandler;
     private Region root;
 
+    /**
+     * Initializer
+     * @param viewHandler the View Handler
+     * @param viewModel the View Model
+     * @param root the root
+     */
     public void init (ViewHandler viewHandler, CreateAccountViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
@@ -31,6 +37,9 @@ public class CreateAccountViewController {
         this.viewModel.bindProperties(typeChoiceBox.valueProperty(), titleField.textProperty(), currencyChoiceBox.valueProperty());
     }
 
+    /**
+     * Handler
+     */
     @FXML private void handleCreateAccountButtonAction() {
         viewModel.createAccount();
         viewHandler.openView(ViewFactory.OVERVIEW);
@@ -41,10 +50,17 @@ public class CreateAccountViewController {
         viewHandler.openView(ViewFactory.OVERVIEW);
     }
 
+    /**
+     * Getter
+     * @return the root
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Reset
+     */
     public void reset() {
         this.titleField.setText("");
     }

@@ -7,6 +7,9 @@ import javafx.scene.layout.Region;
 import java.io.IOError;
 import java.io.IOException;
 
+/**
+ * View Factory for the app
+ */
 public class ViewFactory {
     public static final String LOGIN = "Login";
     public static final String REGISTER = "Register";
@@ -33,6 +36,11 @@ public class ViewFactory {
     private final ViewHandler viewHandler;
     private final ViewModelFactory viewModelFactory;
 
+    /**
+     * Constructor
+     * @param viewHandler the View Handler
+     * @param viewModelFactory the View Model Factory
+     */
     public ViewFactory(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
         this.viewHandler = viewHandler;
         this.viewModelFactory = viewModelFactory;
@@ -47,6 +55,10 @@ public class ViewFactory {
         this.transactionsListViewController = null;
     }
 
+    /**
+     * Method used to load the login view
+     * @return the root of the view
+     */
     public Region loadLoginView() {
         if (loginViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -64,6 +76,10 @@ public class ViewFactory {
         return loginViewController.getRoot();
     }
 
+    /**
+     * Method used to load the register view
+     * @return the root of the view
+     */
     public Region loadRegisterView() {
         if (registerViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -81,6 +97,10 @@ public class ViewFactory {
         return registerViewController.getRoot();
     }
 
+    /**
+     * Method used to load the overview view
+     * @return the root of the view
+     */
     public Region loadOverviewView() {
         if (overviewViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -98,6 +118,10 @@ public class ViewFactory {
         return overviewViewController.getRoot();
     }
 
+    /**
+     * Method used to load the create transaction view
+     * @return the root of the view
+     */
     public Region loadCreateTransactionView() {
         if (createTransactionViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -115,6 +139,10 @@ public class ViewFactory {
         return createTransactionViewController.getRoot();
     }
 
+    /**
+     * Method used to load the account details view
+     * @return the root of the view
+     */
     public Region loadAccountDetailsView() {
         if (accountDetailsViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -132,6 +160,10 @@ public class ViewFactory {
         return accountDetailsViewController.getRoot();
     }
 
+    /**
+     * Method used to load the create account view
+     * @return the root of the view
+     */
     public Region loadCreateAccountView() {
         if (createAccountViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -149,6 +181,10 @@ public class ViewFactory {
         return createAccountViewController.getRoot();
     }
 
+    /**
+     * Method used to load the user list view
+     * @return the root of the view
+     */
     public Region loadUsersListView() {
         if (usersListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -166,6 +202,10 @@ public class ViewFactory {
         return usersListViewController.getRoot();
     }
 
+    /**
+     * Method used to load the account list view
+     * @return the root of the view
+     */
     public Region loadAccountsListView() {
         if (accountsListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -183,6 +223,10 @@ public class ViewFactory {
         return accountsListViewController.getRoot();
     }
 
+    /**
+     * Method used to load the transactions list view
+     * @return the root of the view
+     */
     public Region loadTransactionsListView() {
         if (transactionsListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -200,6 +244,11 @@ public class ViewFactory {
         return transactionsListViewController.getRoot();
     }
 
+    /**
+     * loader for views
+     * @param id the id of the view
+     * @return
+     */
     public Region load(String id) {
         return switch(id) {
             case LOGIN -> loadLoginView();

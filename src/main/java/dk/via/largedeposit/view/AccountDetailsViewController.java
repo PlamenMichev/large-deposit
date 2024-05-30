@@ -31,6 +31,12 @@ public class AccountDetailsViewController {
     private ViewHandler viewHandler;
     private Region root;
 
+    /**
+     * Initializer
+     * @param viewHandler the View Handler
+     * @param viewModel the View Model
+     * @param root the root
+     */
     public void init (ViewHandler viewHandler, AccountDetailsViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
@@ -55,20 +61,33 @@ public class AccountDetailsViewController {
         this.titleLabel.setText("Preview account");
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleDeactivateAccountButtonAction() {
         System.out.println("Deactivate account button clicked");
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleBackButtonAction() {
         viewHandler.openView(ViewFactory.OVERVIEW);
     }
 
+    /**
+     * Getter
+     * @return the root
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Reset
+     */
     public void reset() {
     }
 }

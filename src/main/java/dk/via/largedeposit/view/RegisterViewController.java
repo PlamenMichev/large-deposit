@@ -42,6 +42,12 @@ public class RegisterViewController {
     private ViewHandler viewHandler;
     private Region root;
 
+    /**
+     * Initializer
+     * @param viewHandler the View Handler
+     * @param viewModel the View Model
+     * @param root the root
+     */
     public void init (ViewHandler viewHandler, RegisterViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
@@ -60,6 +66,9 @@ public class RegisterViewController {
                 cprField.textProperty());
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleRegisterButtonAction() {
         try {
@@ -70,10 +79,17 @@ public class RegisterViewController {
         }
     }
 
+    /**
+     * Getter
+     * @return the root
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Reset
+     */
     public void reset() {
         firstNameField.setText("");
         lastNameField.setText("");

@@ -21,6 +21,12 @@ public class OverviewViewController {
     private ViewHandler viewHandler;
     private Region root;
 
+    /**
+     * Initializer
+     * @param viewHandler the View Handler
+     * @param viewModel the View Model
+     * @param root the root
+     */
     public void init (ViewHandler viewHandler, OverviewViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
@@ -37,20 +43,33 @@ public class OverviewViewController {
         });
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleCreateNewAccountButtonAction() {
         viewHandler.openView(ViewFactory.CREATE_ACCOUNT);
     }
 
+    /**
+     * Handler
+     */
     @FXML
     private void handleCreateTransactionButtonAction() {
         viewHandler.openView(ViewFactory.CREATE_TRANSACTION);
     }
 
+    /**
+     * Getter
+     * @return the root
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Reset
+     */
     public void reset() {
     }
 }

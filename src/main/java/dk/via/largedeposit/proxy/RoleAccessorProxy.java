@@ -16,15 +16,37 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+/**
+ * This class is the proxi for the server
+ */
 public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
     private final Model delegate;
     private User currentUser;
 
+    /**
+     * Constructor
+     * @param delegate the model
+     * @throws RemoteException
+     */
     public RoleAccessorProxy(Model delegate) throws RemoteException {
         this.delegate = delegate;
         this.currentUser = null;
     }
 
+    /**
+     * This method handles registration
+     * @param firstName
+     * @param lastName
+     * @param dob
+     * @param address
+     * @param postalCode
+     * @param city
+     * @param phone
+     * @param email
+     * @param password
+     * @param cpr
+     * @return the user that registered
+     */
     @Override
     public User register(String firstName, String lastName, long dob, String address, String postalCode, String city, String phone, String email, String password, String cpr) {
         if (currentUser != null) {
@@ -35,6 +57,12 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
         return this.currentUser;
     }
 
+    /**
+     * This method handles login
+     * @param email
+     * @param password
+     * @return the user that logged in
+     */
     @Override
     public User login(String email, String password) {
         if (currentUser != null) {
@@ -46,6 +74,11 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
         return this.currentUser;
     }
 
+    /**
+     * Getter
+     * @return all users registered
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<User> getUsers() throws RemoteException {
         if (currentUser == null) {
@@ -59,11 +92,19 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
         return delegate.getUsers();
     }
 
+    /**
+     * Getter
+     * @return the specific user
+     */
     @Override
     public User getCurrentUser() {
         return this.currentUser;
     }
 
+    /**
+     * This method is used to change the activity status of an user
+     * @param id the id of the user
+     */
     @Override
     public void toggleUserActiveStatus(int id) {
         if (currentUser == null) {

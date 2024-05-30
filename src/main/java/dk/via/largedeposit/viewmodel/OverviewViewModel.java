@@ -10,13 +10,20 @@ import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 
+/**
+ * View Model for overview
+ */
 public class OverviewViewModel implements PropertyChangeListener {
+
     private final Model model;
     private ObservableList<Account> accounts;
 
 
+    /**
+     * Constructor
+     * @param model the model
+     */
     public OverviewViewModel(Model model) {
         this.model = model;
         this.model.addPropertyChangeListener(this);

@@ -13,16 +13,27 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * View Model for the user list
+ */
 public class UsersListViewModel implements PropertyChangeListener {
     private final Model model;
     private ObservableList<User> users;
 
+    /**
+     * Constructor
+     * @param model the model
+     */
     public UsersListViewModel(Model model) {
         this.model = model;
         this.model.addPropertyChangeListener(this);
         this.users = FXCollections.observableArrayList();
     }
 
+    /**
+     * Getter
+     * @return the unverified users
+     */
     public ObservableList<User> getUnverifiedUsers() {
         try {
             var allUsers = model.getUsers();
@@ -34,6 +45,10 @@ public class UsersListViewModel implements PropertyChangeListener {
         }
     }
 
+    /**
+     * Method used to add users
+     * @param user a specific user
+     */
     public void addUser(User user) {
         this.users.add(user);
     }
