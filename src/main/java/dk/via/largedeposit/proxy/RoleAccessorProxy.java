@@ -1,5 +1,6 @@
 package dk.via.largedeposit.proxy;
 
+import dk.via.largedeposit.model.Account;
 import dk.via.largedeposit.model.Model;
 import dk.via.largedeposit.model.ModelManager;
 import dk.via.largedeposit.model.User;
@@ -74,6 +75,31 @@ public class RoleAccessorProxy extends UnicastRemoteObject implements Model {
         }
 
         delegate.toggleUserActiveStatus(id);
+    }
+
+    @Override
+    public ArrayList<Account> getAccounts() {
+        if (currentUser == null) {
+            throw new IllegalStateException("You are not logged in");
+        }
+
+        var result = delegate.getAccounts();
+        if (currentUser.getRole() == UserRole.ADMIN) {
+            return result;
+        }
+
+        return new ArrayList<>(result.stream()
+                .filter(account -> account.getUser().getId() == currentUser.getId())
+                .toList());
+    }
+
+    @Override
+    public Account createAccount(String type, String name, String currency, User user) {
+        if (currentUser == null) {
+            throw new IllegalStateException("You are not logged in");
+        }
+
+        return delegate.createAccount(type, name, currency, currentUser);
     }
 
     @Override

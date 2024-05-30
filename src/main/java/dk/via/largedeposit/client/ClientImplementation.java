@@ -1,5 +1,6 @@
 package dk.via.largedeposit.client;
 
+import dk.via.largedeposit.model.Account;
 import dk.via.largedeposit.model.User;
 import dk.via.largedeposit.server.Server;
 import dk.via.remote.observer.RemotePropertyChangeEvent;
@@ -42,6 +43,16 @@ public class ClientImplementation extends UnicastRemoteObject implements
     @Override
     public void toggleUserActiveStatus(int id) throws RemoteException {
         this.server.toggleUserActiveStatus(id);
+    }
+
+    @Override
+    public ArrayList<Account> getAccounts() throws RemoteException {
+        return this.server.getAccounts();
+    }
+
+    @Override
+    public Account createAccount(String type, String name, String currency, User user) throws RemoteException {
+        return this.server.createAccount(type, name, currency, user);
     }
 
     @Override

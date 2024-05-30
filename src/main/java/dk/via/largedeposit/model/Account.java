@@ -2,8 +2,11 @@ package dk.via.largedeposit.model;
 
 import dk.via.largedeposit.model.enums.Currency;
 
-public class Account {
-    private final String number;
+import java.io.Serializable;
+
+public class Account implements Serializable {
+    private final String accountNumber;
+    private final String regNumber;
     private String title;
     private final User user;
     private final String iban;
@@ -14,7 +17,8 @@ public class Account {
     private final long createdAt;
 
     public Account(
-            String number,
+            String accountNumber,
+            String regNumber,
             String title,
             User user,
             String iban,
@@ -23,7 +27,8 @@ public class Account {
             boolean isActive,
             int deactivationReason,
             long createdAt) {
-        this.number = number;
+        this.accountNumber = accountNumber;
+        this.regNumber = regNumber;
         this.title = title;
         this.user = user;
         this.iban = iban;
@@ -34,8 +39,12 @@ public class Account {
         this.createdAt = createdAt;
     }
 
-    public String getNumber() {
-        return number;
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getRegNumber() {
+        return regNumber;
     }
 
     public String getTitle() {

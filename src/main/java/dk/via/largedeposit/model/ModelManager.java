@@ -66,6 +66,24 @@ public class ModelManager implements Model, PropertyChangeListener {
     }
 
     @Override
+    public ArrayList<Account> getAccounts() {
+        try {
+            return this.client.getAccounts();
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Account createAccount(String type, String name, String currency, User user) {
+        try {
+            return this.client.createAccount(type, name, currency, user);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

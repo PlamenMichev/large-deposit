@@ -22,6 +22,7 @@ public class User implements Serializable {
 
     // Admin constructor
     public User(
+            int id,
             String cprNumber,
             String firstName,
             String lastName,
@@ -35,7 +36,7 @@ public class User implements Serializable {
             boolean isVerified,
             long dateOfBirth,
             long createdAt) {
-        id = -1;
+        this.id = id;
         this.cprNumber = cprNumber;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -7,7 +7,8 @@ public class CreditAccount extends Account {
     private double creditLimit;
 
     public CreditAccount(
-            String number,
+            String accountNumber,
+            String regNumber,
             String title,
             User user,
             String iban,
@@ -16,12 +17,13 @@ public class CreditAccount extends Account {
             boolean isActive,
             int deactivationReason,
             long createdAt) {
-        super(number, title, user, iban, balance, currency, isActive, deactivationReason, createdAt);
+        super(accountNumber, regNumber, title, user, iban, balance, currency, isActive, deactivationReason, createdAt);
         this.creditLimit = 0;
     }
 
     public CreditAccount(
-            String number,
+            String accountNumber,
+            String regNumber,
             String title,
             User user,
             String iban,
@@ -31,7 +33,7 @@ public class CreditAccount extends Account {
             int deactivationReason,
             long createdAt,
             double creditLimit) {
-        super(number, title, user, iban, balance, currency, isActive, deactivationReason, createdAt);
+        super(accountNumber, regNumber, title, user, iban, balance, currency, isActive, deactivationReason, createdAt);
         this.creditLimit = creditLimit;
     }
 

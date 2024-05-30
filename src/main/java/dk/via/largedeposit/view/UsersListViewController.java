@@ -1,9 +1,7 @@
 package dk.via.largedeposit.view;
 
 import dk.via.largedeposit.model.User;
-import dk.via.largedeposit.model.enums.UserRole;
 import dk.via.largedeposit.viewmodel.UsersListViewModel;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;

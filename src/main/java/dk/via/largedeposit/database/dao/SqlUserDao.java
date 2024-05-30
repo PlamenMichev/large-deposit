@@ -33,6 +33,7 @@ public class SqlUserDao implements UserDao {
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return new User(
+                        result.getInt("id"),
                         result.getString("cpr_number"),
                         result.getString("first_name"),
                         result.getString("last_name"),
@@ -75,7 +76,7 @@ public class SqlUserDao implements UserDao {
             ResultSet keys = statement.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);
-            return new User(cpr, firstName, lastName, UserRole.CUSTOMER, address, postalCode, city, phone, email, password, false, dateOfBirth, currentTime);
+            return new User(id, cpr, firstName, lastName, UserRole.CUSTOMER, address, postalCode, city, phone, email, password, false, dateOfBirth, currentTime);
         }
     }
 
@@ -96,6 +97,7 @@ public class SqlUserDao implements UserDao {
             ArrayList<User> users = new ArrayList<>();
             while (result.next()) {
                 users.add(new User(
+                        result.getInt("id"),
                         result.getString("cpr_number"),
                         result.getString("first_name"),
                         result.getString("last_name"),

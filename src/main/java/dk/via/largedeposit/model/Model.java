@@ -10,5 +10,7 @@ public interface Model {
     ArrayList<User> getUsers() throws RemoteException;
     User getCurrentUser();
     void toggleUserActiveStatus(int id);
+    ArrayList<Account> getAccounts();
+    Account createAccount(String type, String name, String currency, User user);
     void addPropertyChangeListener(PropertyChangeListener listener);
 }

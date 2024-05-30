@@ -30,13 +30,9 @@ public class TransactionsListViewController {
 
 
         var accounts = new ArrayList<Account>();
-        var user = new User("1234123412", "John", "Doe", UserRole.CUSTOMER, "Test address",
+        var user = new User(1, "1234123412", "John", "Doe", UserRole.CUSTOMER, "Test address",
                 "1234", "City", "93833920", "plamen@mail.dl", "parola123",
                 true, 10000, 100000);
-        accounts.add(new Account("12341234", "Second account", user,
-                "812491235", 122, Currency.DKK, true, 0, 100000));
-        accounts.add(new Account("1235234", "Krona money", user,
-                "71239485", 51122, Currency.DKK, true, 0, 100000));
 
         var transactions = new ArrayList<Transaction>();
         for (int i = 0; i < 10; i++) {

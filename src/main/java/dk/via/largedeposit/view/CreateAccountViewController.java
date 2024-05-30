@@ -16,7 +16,6 @@ public class CreateAccountViewController {
     @FXML
     private ChoiceBox<String> typeChoiceBox;
 
-
     private CreateAccountViewModel viewModel;
     private ViewHandler viewHandler;
     private Region root;
@@ -28,13 +27,12 @@ public class CreateAccountViewController {
 
         currencyChoiceBox.setValue("DKK");
         typeChoiceBox.setValue("Debit");
+
+        this.viewModel.bindProperties(typeChoiceBox.valueProperty(), titleField.textProperty(), currencyChoiceBox.valueProperty());
     }
 
     @FXML private void handleCreateAccountButtonAction() {
-        System.out.println("Create account button clicked");
-        System.out.println("Title: " + titleField.getText());
-        System.out.println("Currency: " + currencyChoiceBox.getValue());
-        System.out.println("Type: " + typeChoiceBox.getValue());
+        viewModel.createAccount();
         viewHandler.openView(ViewFactory.OVERVIEW);
     }
 
@@ -43,5 +41,6 @@ public class CreateAccountViewController {
     }
 
     public void reset() {
+        this.titleField.setText("");
     }
 }
